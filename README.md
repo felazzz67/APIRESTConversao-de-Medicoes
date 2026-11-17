@@ -27,67 +27,71 @@ Uma **API RESTful** desenvolvida em **Node.js** com **Express** e banco de dados
 1. **Instalar as dependências**:
    ```bash
    npm install
-Configurar as Variáveis de Ambiente (.env): Crie um arquivo .env na raiz do projeto contendo as credenciais de acesso ao seu banco de dados MySQL:
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=sua_senha
-DB_NAME=seu_banco_de_dados
-Iniciar o Servidor em Desenvolvimento:
-npm run dev
-O servidor será iniciado na porta 3000 (http://localhost:3000).
-🧮 Regras de Negócio e Conversões Suportadas
+   ```
+
+2. **Configurar as Variáveis de Ambiente (`.env`)**:
+   Crie um arquivo `.env` na raiz do projeto contendo as credenciais de acesso ao seu banco de dados MySQL:
+   ```env
+   DB_HOST=localhost
+   DB_USER=root
+   DB_PASSWORD=sua_senha
+   DB_NAME=seu_banco_de_dados
+   ```
+
+3. **Iniciar o Servidor em Desenvolvimento**:
+   ```bash
+   npm run dev
+   ```
+   O servidor será iniciado na porta **3000** (`http://localhost:3000`).
+
+---
+
+## 🧮 Regras de Negócio e Conversões Suportadas
+
 O servidor valida os dados e executa os cálculos diretamente no backend:
-Temperatura (temperatura):
-Converte entre Celsius (c) e Fahrenheit (f).
-Classifica o clima como "O clima esta frio", "O clima esta agradavel" ou "O clima esta quente".
-Velocidade (velocidade):
-Converte entre km/h e m/s.
-Classifica a velocidade como "Baixa Velocidade", "Velocidade Moderada" ou "Alta Velocidade".
-Comprimento (comprimento):
-Converte entre Metros (m) e Pés (ft).
-Classifica a medida como "Curto", "Médio" ou "Longo".
-📌 Rotas da API (Endpoints)
-Método
-Endpoint
-Descrição
-Corpo da Requisição (JSON)
-GET
-/
-Retorna mensagem de teste da API.
-N/A
-GET
-/medicao
-Retorna todas as medições cadastradas.
-N/A
-GET
-/medicao/alta-velocidade
-Filtra e retorna medições com classificação "Alta Velocidade".
-N/A
-GET
-/medicao/:id
-Busca uma medição específica pelo ID.
-N/A
-POST
-/medicao
-Cadastra uma nova medição com cálculo e conversão automática.
-{ "descricao": "Vento", "valor": 50, "unidade_original": "km/h", "tipo": "velocidade" }
-PUT
-/medicao/:id
-Atualiza os dados de uma medição e recalcula os valores.
-{ "descricao": "Vento forte", "valor": 100, "unidade_original": "km/h", "tipo": "velocidade" }
-DELETE
-/medicao/:id
-Exclui a medição correspondente ao ID informado.
-N/A
-📝 Exemplo de Requisição e Resposta (POST)
-Requisição (POST /medicao):
+
+1. **Temperatura (`temperatura`)**:
+   - Converte entre **Celsius (`c`)** e **Fahrenheit (`f`)**.
+   - Classifica o clima como `"O clima esta frio"`, `"O clima esta agradavel"` ou `"O clima esta quente"`.
+
+2. **Velocidade (`velocidade`)**:
+   - Converte entre **`km/h`** e **`m/s`**.
+   - Classifica a velocidade como `"Baixa Velocidade"`, `"Velocidade Moderada"` ou `"Alta Velocidade"`.
+
+3. **Comprimento (`comprimento`)**:
+   - Converte entre **Metros (`m`)** e **Pés (`ft`)**.
+   - Classifica a medida como `"Curto"`, `"Médio"` ou `"Longo"`.
+
+---
+
+## 📌 Rotas da API (Endpoints)
+
+| Método | Endpoint | Descrição | Corpo da Requisição (JSON) |
+| :--- | :--- | :--- | :--- |
+| **GET** | `/` | Retorna mensagem de teste da API. | N/A |
+| **GET** | `/medicao` | Retorna todas as medições cadastradas. | N/A |
+| **GET** | `/medicao/alta-velocidade` | Filtra e retorna medições com classificação `"Alta Velocidade"`. | N/A |
+| **GET** | `/medicao/:id` | Busca uma medição específica pelo ID. | N/A |
+| **POST** | `/medicao` | Cadastra uma nova medição com cálculo e conversão automática. | `{ "descricao": "Vento", "valor": 50, "unidade_original": "km/h", "tipo": "velocidade" }` |
+| **PUT** | `/medicao/:id` | Atualiza os dados de uma medição e recalcula os valores. | `{ "descricao": "Vento forte", "valor": 100, "unidade_original": "km/h", "tipo": "velocidade" }` |
+| **DELETE** | `/medicao/:id` | Exclui a medição correspondente ao ID informado. | N/A |
+
+---
+
+## 📝 Exemplo de Requisição e Resposta (POST)
+
+**Requisição (`POST /medicao`):**
+```json
 {
   "descricao": "Temperatura ambiente",
   "valor": 25,
   "unidade_original": "c",
   "tipo": "temperatura"
 }
-Resposta (201 Created):
+```
+
+**Resposta (`201 Created`):**
+```json
 {
   "id": 1,
   "descricao": "Temperatura ambiente",
@@ -98,4 +102,3 @@ Resposta (201 Created):
   "unidade_convertida": "f",
   "classificacao": "O clima esta quente"
 }
-
