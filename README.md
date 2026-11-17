@@ -34,8 +34,8 @@ Uma **API RESTful** desenvolvida em **Node.js** com **Express** e banco de dados
    ```env
    DB_HOST=localhost
    DB_USER=root
-   DB_PASSWORD=sua_senha
-   DB_NAME=seu_banco_de_dados
+   DB_PASSWORD=""
+   DB_NAME= convercoes
    ```
 
 3. **Iniciar o Servidor em Desenvolvimento**:
